@@ -1,0 +1,39 @@
+---
+title: Mapa
+author: Emilio
+date: '2022-06-20'
+slug: mapa
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-06-20T14:14:45+02:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+## Visualización de mapa interactivo
+
+```{r}
+library(tidyverse)
+datos <- readRDS("pokemon.rds")
+library(leaflet)
+datos |> leaflet() |> 
+  addTiles() |> 
+  addMarkers(label = ~Pokemon, 
+             popup = ~paste0(emo::ji("person running"), speed, "<br/>",
+                             emo::ji("bug"), against_bug))
+  
+```
+
+Los datos completos se pueden ver en la siguiente tabla.
+
+```{r}
+library(DT)
+datos |> datatable(filter = "top")
+```
