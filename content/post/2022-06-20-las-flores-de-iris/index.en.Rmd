@@ -1,0 +1,51 @@
+---
+title: Las flores de Iris
+author: Emilio
+date: '2022-06-20'
+slug: las-flores-de-iris
+categories:
+  - Demo
+tags:
+  - Deep Learning
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-06-20T14:10:27+02:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+## El conjunto de datos Iris
+
+Este es un ejemplo básico de visualización interactiva con el paquete {plotly}.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(plotly)
+p <- iris |> 
+  ggplot(aes(Petal.Length, Petal.Width, col = Species)) +
+  geom_point()
+ggplotly(p)
+```
+
+
+Podemos incluir también tablas profesionales:
+
+```{r, message=FALSE}
+library(flextable)
+iris |> 
+  group_by(Species) |> 
+  summarise(across(.fns = list(mean))) |> 
+  flextable() |> 
+  autofit()
+```
+
+```{r}
+library(DT)
+datatable(iris, options = list(pageLength = 5))
+```
+
